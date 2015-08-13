@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="zh-CN">
+<!--页头引入-->
+<head ms-controller="head">
+    <title>{{title}}</title>
+    <meta ms-attr-content="{{PageDescription}}" name="Description">
+    <meta ms-attr-content="{{PageKeywords}}" name="Keywords">
+    <meta charset="UTF-8">
+    <!--坑爹的IE兼容-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--坑爹的将360默认为极速模式打开-->
+    <meta name="renderer" content="webkit">
+    <!--移动优先-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--图标引入-->
+    <!--[if lt IE 8]>
+    <link href="./src/css/font-awesome-ie7.min.css" rel="stylesheet">
+    <![endif]-->
+    <link href="./src/css/font-awesome.min.css" rel="stylesheet">
+    <link href="./src/css/layout.css" rel="stylesheet">
+    <link rel="stylesheet" href="./src/css/mooshroom.css"/>
+    <link rel="stylesheet" href="./plugins/strawberry/stb.css"/>
+    <link rel="stylesheet" href="./src/css/btn.css"/>
+
+
+</head>
+
+<body>
+
+
+
+<div ms-controller="include">
+    <!--导航-->
+    <div ms-include-src="nav"></div>
+
+    <!--主体区域-->
+    <div ms-include-src="url"></div>
+
+    <!--页脚-->
+    <div class="container">
+        <div ms-include-src="footer"></div>
+    </div>
+
+
+    <!--modal 模态框-->
+
+    <div ms-controller="modal">
+        <div class="modal-bg" id="myModal" ms-visible="toggle" ms-click="getOut">
+            <div class="modal-box"
+                 ms-css-left="x"
+                 ms-css-top="y"
+                 ms-css-height="mh"
+                 ms-css-width="mw">
+
+                <div ms-include-src="url"></div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!--fm-->
+<script  src="./src/js/avalon.js"></script>
+<script  src="./src/js/mmRequest.js"></script>
+<script src="./src/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+<!--tansuyun plugins-->
+<script type="text/javascript" src="./plugins/modal/modal.js"></script>
+<script src="./plugins/door.js"></script>
+<!--<script type="javascript" src="./plugins/strawberry/stb.js"></script>-->
+<script  src="./plugins/call.js"></script>
+<!--<script type="javascript" src="./plugins/regCheckOut.js"></script>-->
+<!--soul-->
+<script src="./config.js"></script>
+<script src="./router.js"></script>
+<script src="./include.js"></script>
+
+
+
+
+
+
+
+</body>
+</html>

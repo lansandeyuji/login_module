@@ -1,0 +1,109 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        模态框标题
+    </div>
+    <div class="panel-body">
+        <div class="file_content markdown-body">
+            <h1><a class="anchor" id="mdeditor-markdown编辑器" href="#mdeditor-markdown编辑器"></a>MDEditor--markdown编辑器</h1>
+            <hr>
+            <h2><a class="anchor" id="功能介绍" href="#功能介绍"></a>功能介绍</h2>
+            <p>MDEditor是一款前端实现markdown编辑器的模块，目前功能包含：</p>
+
+            <blockquote>
+                <ol>
+                    <li>markdown格式文本的实时编译（同时支持GFM语法）</li>
+                    <li>编辑模式的切换</li>
+                    <li>快捷键功能</li>
+                    <li>实时预览时编辑窗口和预览窗口的同步滚动（算法有待优化） </li>
+                    <li>可以使用avalon内置的AMD加载器动态加载</li>
+                    <li>更具当前浏览器的高度自动调整编辑框的高度，好处很多。</li>
+                </ol>
+            </blockquote>
+            <h2><a class="anchor" id="依赖" href="#依赖"></a>依赖</h2>
+            <p>实现编辑器的全部部分并非我一人之手，使用了很多成熟的框架，编辑器的编译部分也是使用大神写的markdown编译器，我只是做了一个外壳而已，以下是本编辑器所依赖的框架：</p>
+
+            <blockquote>
+                <ol>
+                    <li>jquery-1.10.2 以上就可以了</li>
+                    <li><a href="http://avalonjs.github.io/">avalon</a> 前端框架</li>
+                    <li><a href="http://www.bootcss.com/">bootstrap3</a> 前端UI框架</li>
+                    <li><a href="http://fontawesome.io/">font-awesome</a> 字体图标库</li>
+                </ol>
+            </blockquote>
+
+            <p>因为这个模块原本是在自己团队内部使用，而团队就用这3个框架来进行开发，所以这里也是直接基于这3者开始，图标的部分就不额外给设计师加工作量，所以就直接用的fontAwesome的库，总之都是很偷懒的啦~</p>
+
+            <p>不过我还没写完全部的功能就被推荐了也是很以外（所以才来好好写写文档）。</p>
+
+            <p>除此之外，实现编译和代码美化的部分也用了别人的代码：</p>
+
+            <blockquote>
+                <ol>
+                    <li><a href="https://github.com/chjj/marked">marked</a> markdown编译器</li>
+                    <li><a href="http://code.google.com/p/google-code-prettify/">prettify</a> 代码美化插件</li>
+                </ol>
+            </blockquote>
+
+            <p>小生感激不尽！</p>
+            <h2><a class="anchor" id="文件结构" href="#文件结构"></a>文件结构</h2>
+            <p>文件结构直接使用碳素云前端团队的标准目录结构</p>
+            <h3><a class="anchor" id="1-plugins" href="#1-plugins"></a>1. plugins</h3>
+            <p>这个文件用户放置项目所用的各种插件，MDEditor也是一个插件，所以也是放在这个里面，团队使用的时候直接整个文件夹拖过去就好。</p>
+
+            <p><a href="http://git.oschina.net/luodan/tip">attention.js</a>  是<a href="http://git.oschina.net/luodan">罗丹</a>的提示插件，新版本名字已经修改了，我用的是老版本的，所以还是用的这个名字。</p>
+
+            <p><a href="https://github.com/chjj/marked">markdown.js</a> 是markdown的编译器，prettify.js是代码美化插件。</p>
+
+            <p>MDEditor.html是编辑器的结构层，需要引入才能看，使用的时候可以用动态加载的方法也可以直接代码负责粘贴。</p>
+
+            <p>MDEditor.js是编辑器的主要文件，其中实现了快捷键，自动高度，跟随滚动，等等的功能。</p>
+            <h3><a class="anchor" id="2-src" href="#2-src"></a>2. src</h3>
+            <p>这个文件夹里面放置了静态资源，包括各种框架等等的，其中比较总要的是**MDEditor.css**这个文件，这个文件就是编辑器的样式表，加入了之后就能看到正确的样子了</p>
+            <h3><a class="anchor" id="3-config-js" href="#3-config-js"></a>3. config.js</h3>
+            <p>这个文件用于配置项目相关的配置项，例如API的接口，全局方法等，比较重要的是，要将依赖的地址在这里明确写出来，像这样：</p>
+            <div class="monokai"><div class="highlight"><pre class="hljs less"><span class="nx"><span class="hljs-tag">require</span></span><span class="p"><span class="hljs-class">.</span></span><span class="nx"><span class="hljs-class">config</span></span><span class="p">({</span>
+    <span class="na"><span class="hljs-tag">paths</span></span><span class="p">:</span> <span class="p">{</span>
+        <span class="na"><span class="hljs-attribute">MDEditor</span></span><span class="p">:</span><span class="s2"><span class="hljs-string">"../../plugins/MDEditor"</span></span><span class="p">,</span>
+        <span class="na"><span class="hljs-attribute">marked</span></span><span class="p">:</span><span class="s2"><span class="hljs-string">"../../plugins/markdown"</span></span><span class="p">,</span>
+        <span class="na"><span class="hljs-attribute">prettify</span></span><span class="p">:</span><span class="s2"><span class="hljs-string">"../../plugins/prettify"</span></span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div></div>
+            <p>基本地址是从avalon.js所在的地址开始，具体的细节可以看avalon关于加载器的<a href="http://avalonjs.github.io/#zh/engineering/loader.html">详细介绍</a>。如果你的目录结构和我的不一样，只需要在这里配置好各个依赖的地址，使用就没问题了。</p>
+            <h3><a class="anchor" id="4-include-js" href="#4-include-js"></a>4. include.js</h3>
+            <p>这个文件里面是一个avalon的VM，作用是用来控制各个模块在index.html上面的各种引入。我在这里引入了MDEditor.html。</p>
+            <h3><a class="anchor" id="5-index-html" href="#5-index-html"></a>5. index.html</h3>
+            <p>启动文件，不用多说，一看就明白。</p>
+            <h3><a class="anchor" id="6-router-js" href="#6-router-js"></a>6. router.js</h3>
+            <p>avalon的路由系统的文件，具体怎么弄的可以看<a href="https://github.com/RubyLouvre/mmRouter">这里</a>。我在这里监听了首页的路由，然后动态加载了MDEditor.js，然后在MDEditor.js里面动态加载了编译器和代码美化插件，所以如果你目录结构和我一样，直接动态加载，或者引入MDEditor.js就可以了。</p>
+            <h2><a class="anchor" id="使用指引" href="#使用指引"></a>使用指引</h2>
+            <p>如果你只是下下来自己用的话，你需要配置一个本地的服务器，用IIS还是nginx 都可以，然后打开 http://localhost/mdeditor 就可以使用了（localhost是什么我就不多说了）。</p>
+
+            <p>要在自己的项目中使用，首先需要引入**jquery、avalon、bootstrap、font-awesome**，不想引入avalon，bootstrap，font-awesome也是可以的，不过**jq必须得有**，其他的没有的话，需要修改一下代码，核心的方法不需要修改。</p>
+
+            <p>引入结构层和表现层：**MDEditor.html**
+                和
+                <strong>MDEditor.css</strong></p>
+
+            <p>然后需要配置编译器和代码美化的地址，这个上面说过了。</p>
+
+            <p>使用avalon的AMD加载器加载：</p>
+            <div class="monokai"><div class="highlight"><pre class="hljs php"><span class="nx"><span class="hljs-keyword">require</span></span><span class="p">([</span><span class="s1"><span class="hljs-string">'MDEditor'</span></span><span class="p">],</span> <span class="kd"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span><span class="hljs-function"> </span><span class="p"><span class="hljs-function"><span class="hljs-params">()</span></span></span><span class="hljs-function"> </span><span class="p">{</span>
+     <span class="nx">MDEditor</span><span class="p">.</span><span class="nx">ready</span><span class="p">()</span>
+<span class="p">})</span>
+</pre></div></div>
+            <p>加载成功之后执行MDEditor.ready()这个方法，编辑器就加载好了。</p>
+
+            <p>（完</p>
+            <h3><a class="anchor" id="the-mit-license-mit-" href="#the-mit-license-mit-"></a>The MIT License (MIT)</h3>
+            <hr>
+
+            <p>Copyright (c) 2015 mooshroom</p>
+
+            <p>See LICENSE for more info.</p>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <a class="btn btn-default " ms-click="getOut">关闭</a>
+    </div>
+</div>
